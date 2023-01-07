@@ -65,7 +65,7 @@ body {
   width: 400px;
   height: 400px;
   margin-top: 225px;
-  margin-left: 75%;
+  margin-left: 65%;
   margin-right:auto;
   transform: translate(-50%, -50%);
 }
@@ -91,7 +91,7 @@ svg {
   left: 0;
   top: 0;
   fill: none;
-  stroke: rgba(13, 7, 7, 0.48);
+  stroke: rgb(255, 255, 255);
   stroke-dasharray: 150 480;
   stroke-dashoffset: 150;
   transition: 1s ease-in-out;
@@ -99,7 +99,7 @@ svg {
 
 .btn:hover {
   transition: 1s ease-in-out;
-  background: #064209;
+  background: #0c5a10;
 }
 
 .btn:hover svg {
@@ -107,7 +107,16 @@ svg {
 }
 
 .btn span {
-  color: rgb(204, 199, 199);
+  color: rgb(226, 226, 226);
   font-size: 18px;
   font-weight: 100;
 }
+
+.startScreen {
+    opacity: 1;
+    transition: opacity 1s; 
+  }
+  
+  .startScreen.fade {
+    opacity: 0;
+  }
