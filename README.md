@@ -1,4 +1,4 @@
-# <a href="snek.html"> Calculator Project</a>
+# <a href="snek.html"> Snek</a>
 This is my Game that I'm building along with SEV9
 
 # MVP
