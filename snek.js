@@ -2,9 +2,8 @@ window.onload = function() {
     document.getElementById("themeSong").play();
 }
 
-// let startScreen = document.getElementById('.startScreen');
-// let startButton = document.getElementsByClassName('btn')
+let startScreen = document.querySelector('.startScreen')
 
-// startButton.onclick = function () {
-//   startScreen.classList.toggle('fade');
-// }
+function enterGame() {
+    startScreen.classList.toggle('fade');
+  }
