@@ -9,6 +9,7 @@ body {
 }
 
 .mainContainer{
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,7 +64,9 @@ body {
 .start {
   width: 400px;
   height: 400px;
-  margin-top: 50px;
+  margin-top: 225px;
+  margin-left: 75%;
+  margin-right:auto;
   transform: translate(-50%, -50%);
 }
 
