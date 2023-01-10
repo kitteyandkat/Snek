@@ -13,7 +13,6 @@ This is my Game that I'm building along with SEV9
 
   #PMVP
   *Post Minimum Viable Product*
-  -Functionality
     - 3D toggle
     - Death and Eat Animations 
 
