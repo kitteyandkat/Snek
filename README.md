@@ -17,10 +17,14 @@ This is my Game that I'm building along with SEV9
     - 3D toggle
     - Death and Eat Animations 
 
-  # Wireframes
-  <!-- ![calculator](Calculator.png) -->
+# Wireframes
+  ![2D](/Snek/Snek2dwireframe.png)
+  ![3D](/Snek/Snek3dwireframe%20copy.png)
 
-  # License 
+# Gameplay Instructions 
+You are a very hungry Snake! In order to play, use the arrow keys to guide yourself to some yummy treats! As the you eat the treats, you grow larger. While the treats are delicious your tail is no! Try to eat as many treats, while avoiding the walls, and eating your own tail. 
+
+# License 
   MIT License
 
 Copyright (c) 2022 kitteyandkat
