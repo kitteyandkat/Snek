@@ -11,7 +11,7 @@ This is my Game that I'm building along with SEV9
   - Grow based on number of bricks eaten
   - Game over if the snake eats it's own tail
 
-  #PMVP
+# PMVP
   *Post Minimum Viable Product*
     - 3D toggle
     - Death and Eat Animations 

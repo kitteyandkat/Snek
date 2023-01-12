@@ -2,9 +2,14 @@ window.onload = function() {
     document.getElementById("themeSong").play();
 }
 
+function hideElements(x){
+ setTimeout(()=>x.style.display= "none", 500)
+}
+
 let startScreen = document.querySelector('.startScreen')
 function enterGame() {
     startScreen.classList.toggle('fade');
+    setTimeout(hideElements(startScreen), 1000)
   }
 
 // autoplay on chrome maybe?
