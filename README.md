@@ -12,9 +12,10 @@ This is my Game that I'm building along with SEV9
   - Game over if the snake eats it's own tail
 
 # PMVP
-  *Post Minimum Viable Product*
-    - 3D toggle
-    - Death and Eat Animations 
+*Post Minimum Viable Product*
+
+  - 3D toggle
+  - Death and Eat Animations 
 
 # Wireframes
   ![2D](/Snek2dwireframe.png)
