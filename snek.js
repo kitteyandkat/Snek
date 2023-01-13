@@ -21,22 +21,21 @@ function enterGame() {
 
 const ctx = canvas.getContext('2d')
 
-let snakeLength = 3;
-const snakeBody = []
 
-class snakeSection{
+let headX = 3;
+let headY = 4;
+class SnakeSection{
   constructor(x,y){
-  this.x = x
-  this.y = y
+    this.x = x
+    this.y = y
   }
 }
+const snakeBody = [new SnakeSection(headX,headY -.4), new SnakeSection(headX,headY -.8)]
 
 let snakeSpeed = 2;
 let gridPosition = 40
 let gridSize = canvas.width / gridPosition - 2;
 
-let headX = 3;
-let headY = 4;
 
 let treatX = 1;
 let treatY = 2;
@@ -70,10 +69,11 @@ function drawSnake() {
   // For loop so that the snake's body can increase in length
   for (let i = 0; i < snakeBody.length; i++) {
     let body = snakeBody[i];
-    ctx.fillRect(body.x * gridPosition, headY * gridPosition, gridSize, gridSize);
+    ctx.fillRect(body.x * gridPosition, body.y * gridPosition, gridSize, gridSize);
   }
-  snakeBody.push(new snakeSection(headX, headY))
+  console.log('here')
 }
+// snakeBody.push(new SnakeSection(headX, headY))
 
 
 function drawTreat(){
