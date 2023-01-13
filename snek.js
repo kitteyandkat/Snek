@@ -33,10 +33,12 @@ let verticalDirection = 0;
 function drawGame() {
   // clear screen to start with blank game
   clearScreen();
+  //snake keyboard movements
+  moveSnake();
   //call the draw snake function
-  drawSnake()
+  drawSnake();
   //how often screen gets updated
-  setTimeout(drawGame, 1000 / speed)
+  setTimeout(drawGame, 1000 / speed);
 }
 function clearScreen() {
   //use context to draw background to be cleared
@@ -50,20 +52,41 @@ function drawSnake() {
   ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize)
 }
 
+function moveSnake(){
+  headX = headX + horizontalDirection;
+  headY = headY + verticalDirection;
+}
+
 //event listeners to set key binds to move snake
 document.body.addEventListener('keydown', keydown);
 function keydown(x) {
   if (x.keyCode === 38){
     console.log('up arrow')
+    // move the direction up on the y axis
+    verticalDirection = -1;
+    //limit to one direction at a time.
+    horizontalDirection = 0;
   } else {
     if (x.keyCode === 40) {
       console.log('down arrow')
+       // move the direction down on the y axis
+       verticalDirection = +1;
+       //limit to one direction at a time.
+       horizontalDirection = 0;
     } else {
       if (x.keyCode === 37) {
         console.log('left arrow')
+         // move the direction left on the x axis
+         horizontalDirection = -1;
+         //limit to one direction at a time.
+         verticalDirection = 0;
       } else {
         if (x.keyCode === 39) {
           console.log('right arrow')
+           // move the direction right on the x axis
+           horizontalDirection = +1;
+           //limit to one direction at a time.
+           verticalDirection = 0;
         }
       }
     }
