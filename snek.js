@@ -24,15 +24,15 @@ const ctx = canvas.getContext('2d')
 
 let headX = 3;
 let headY = 4;
-class SnakeSection{
-  constructor(x,y){
+class SnakeSection {
+  constructor(x, y) {
     this.x = x
     this.y = y
   }
 }
-const snakeBody = [new SnakeSection(headX,headY -.4), new SnakeSection(headX,headY -.8)]
+const snakeBody = [new SnakeSection(headX, headY - .4), new SnakeSection(headX, headY - .8)]
 
-let snakeSpeed = 2;
+let fps = 2;
 let gridPosition = 40
 let gridSize = canvas.width / gridPosition - 2;
 
@@ -48,13 +48,15 @@ function drawGame() {
   // clear screen to start with blank game
   clearScreen();
   //snake keyboard movements
-  moveSnake();
+  if(!paused){
+    moveSnake()
+  }
   //call the draw snake function
   drawSnake();
   //call the draw treat function
   drawTreat();
   //how often screen gets updated
-  setTimeout(drawGame, 1000 / snakeSpeed);
+  setTimeout(drawGame, 1000 / fps);
 }
 function clearScreen() {
   //use context to draw background to be cleared
@@ -71,20 +73,86 @@ function drawSnake() {
     let body = snakeBody[i];
     ctx.fillRect(body.x * gridPosition, body.y * gridPosition, gridSize, gridSize);
   }
-  console.log('here')
+
+  // snakeBody.push(new SnakeSection(headX, headY))
 }
-// snakeBody.push(new SnakeSection(headX, headY))
 
 
-function drawTreat(){
+function drawTreat() {
   ctx.fillStyle = 'gray'
-  ctx.fillRect(treatX * gridPosition, treatY* gridPosition, gridSize, gridSize)
+  ctx.fillRect(treatX * gridPosition, treatY * gridPosition, gridSize, gridSize)
 }
+
+
+// class history {
+//   constructor(x, y) {
+//     this.x = x
+//     this.y = y
+//   }
+// }
+// const prevPos = [new history(headX, headY)]
+
+
+
+
+let startingPosition = [headX, headY]
 
 function moveSnake() {
+  // console.log(prevPos)
+  // console.log(snakeBody[0])
+  // let movedheadX = headX + horizontalDirection;
+  // let movedheadY = headY + verticalDirection;
+  // let currentPosition = [movedheadX, movedheadY]
+  // loop through snakeBody in reverse order
+  for (let i = snakeBody.length - 1; i >= 0; i--) {
+    // console.log('BLAMMY!!!!')
+    //grab current snake body 
+    let currentBody = snakeBody[i]
+    //grab next snake body
+    let nextBody = snakeBody[i-1]
+    //if no next body, current body moves to neck
+    if (!nextBody){
+      //gridPisition / headx * heady
+      currentBody.x = headX 
+      currentBody.y = headY
+
+      // if nextbody move current body to the nextbody
+    } else{
+      currentBody.x = nextBody.x
+      currentBody.y = nextBody.y 
+    }
+
+    // else move current body to next body
+  }
   headX = headX + horizontalDirection;
   headY = headY + verticalDirection;
+
+
+  // class currentPos {
+  //   constructor(x, y) {
+  //     this.x = x
+  //     this.y = y
+  //   }
+  // }
+  // const coordinates = [new currentPos(headX + horizontalDirection, headY + verticalDirection)]
+  // console.log(currentPos)
+  // console.log(prevPos)
+  // if (currentPos.x === history.x && currentPos.y === history.y) {
+  //   console.log('head still!')
+  // } else {
+  //   if (currentPos.x !== history.x) {
+  //     console.log('moved vertically!')
+  //   } else {
+  //     if (currentPos.y !== history.y) {
+  //       console.log('moved horizontally!')
+  //     }
+  //   }
+  // }
 }
+
+// Game loop doesn't start until keydown
+
+let paused = true
 
 //event listeners to set key binds to move snake
 document.body.addEventListener('keydown', keydown);
@@ -111,17 +179,17 @@ function keydown(x) {
       if (verticalDirection === -1) {
         return
       }
-  } else {
-    if (x.keyCode === 37) {
-      console.log('left arrow')
-      // move the direction left on the x axis
-      horizontalDirection = -1;
-      //limit to one direction at a time.
-      verticalDirection = 0;
-      // if already moving right, can't also move left, break out of function
-      if (horizontalDirection === 1) {
-        return
-      }
+    } else {
+      if (x.keyCode === 37) {
+        console.log('left arrow')
+        // move the direction left on the x axis
+        horizontalDirection = -1;
+        //limit to one direction at a time.
+        verticalDirection = 0;
+        // if already moving right, can't also move left, break out of function
+        if (horizontalDirection === 1) {
+          return
+        }
       } else {
         if (x.keyCode === 39) {
           console.log('right arrow')
@@ -136,6 +204,9 @@ function keydown(x) {
         }
       }
     }
+  } 
+  if ((verticalDirection|| horizontalDirection) && paused){
+    paused = false
   }
 }
 drawGame();
