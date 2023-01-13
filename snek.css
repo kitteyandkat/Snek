@@ -120,3 +120,12 @@ svg {
   .startScreen.fade {
     opacity: 0;
   }
+
+canvas.hidden{
+  display: none
+}
+
+  canvas{
+    background-color: #666666;
+    box-shadow: #acae2295 10px 5px 20px;
+  }
