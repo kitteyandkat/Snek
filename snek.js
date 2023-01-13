@@ -1,7 +1,9 @@
 let canvas = document.querySelector(".game")
+let themeSong = document.getElementById("themeSong")
 
 window.onload = function () {
-  document.getElementById("themeSong").play();
+  themeSong.play();
+  themeSong.volume = 0.4;
   canvas.style.display = "none"
 }
 
@@ -19,12 +21,25 @@ function enterGame() {
 
 const ctx = canvas.getContext('2d')
 
+let snakeLength = 3;
+const snakeBody = []
+
+class snakeSection{
+  constructor(x,y){
+  this.x = x
+  this.y = y
+  }
+}
+
 let snakeSpeed = 2;
-let tileCount = 40
-let tileSize = canvas.width / tileCount - 2;
+let gridPosition = 40
+let gridSize = canvas.width / gridPosition - 2;
 
 let headX = 3;
 let headY = 4;
+
+let treatX = 1;
+let treatY = 2;
 
 let horizontalDirection = 0;
 let verticalDirection = 0;
@@ -37,8 +52,10 @@ function drawGame() {
   moveSnake();
   //call the draw snake function
   drawSnake();
+  //call the draw treat function
+  drawTreat();
   //how often screen gets updated
-  setTimeout(drawGame, 1000 / speed);
+  setTimeout(drawGame, 1000 / snakeSpeed);
 }
 function clearScreen() {
   //use context to draw background to be cleared
@@ -49,10 +66,22 @@ function clearScreen() {
 
 function drawSnake() {
   ctx.fillStyle = '#e7eb0a'
-  ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize)
+  ctx.fillRect(headX * gridPosition, headY * gridPosition, gridSize, gridSize)
+  // For loop so that the snake's body can increase in length
+  for (let i = 0; i < snakeBody.length; i++) {
+    let body = snakeBody[i];
+    ctx.fillRect(body.x * gridPosition, headY * gridPosition, gridSize, gridSize);
+  }
+  snakeBody.push(new snakeSection(headX, headY))
 }
 
-function moveSnake(){
+
+function drawTreat(){
+  ctx.fillStyle = 'gray'
+  ctx.fillRect(treatX * gridPosition, treatY* gridPosition, gridSize, gridSize)
+}
+
+function moveSnake() {
   headX = headX + horizontalDirection;
   headY = headY + verticalDirection;
 }
@@ -60,33 +89,50 @@ function moveSnake(){
 //event listeners to set key binds to move snake
 document.body.addEventListener('keydown', keydown);
 function keydown(x) {
-  if (x.keyCode === 38){
+  x.preventDefault();
+  if (x.keyCode === 38) {
     console.log('up arrow')
     // move the direction up on the y axis
     verticalDirection = -1;
     //limit to one direction at a time.
     horizontalDirection = 0;
+    // if already moving down, can't also move up, break out of function
+    if (verticalDirection === 1) {
+      return
+    }
   } else {
     if (x.keyCode === 40) {
       console.log('down arrow')
-       // move the direction down on the y axis
-       verticalDirection = +1;
-       //limit to one direction at a time.
-       horizontalDirection = 0;
-    } else {
-      if (x.keyCode === 37) {
-        console.log('left arrow')
-         // move the direction left on the x axis
-         horizontalDirection = -1;
-         //limit to one direction at a time.
-         verticalDirection = 0;
+      // move the direction down on the y axis
+      verticalDirection = +1;
+      //limit to one direction at a time.
+      horizontalDirection = 0;
+      // if already moving down, can't also move up, break out of function
+      if (verticalDirection === -1) {
+        return
+      }
+  } else {
+    if (x.keyCode === 37) {
+      console.log('left arrow')
+      // move the direction left on the x axis
+      horizontalDirection = -1;
+      //limit to one direction at a time.
+      verticalDirection = 0;
+      // if already moving right, can't also move left, break out of function
+      if (horizontalDirection === 1) {
+        return
+      }
       } else {
         if (x.keyCode === 39) {
           console.log('right arrow')
-           // move the direction right on the x axis
-           horizontalDirection = +1;
-           //limit to one direction at a time.
-           verticalDirection = 0;
+          // move the direction right on the x axis
+          horizontalDirection = 1;
+          //limit to one direction at a time.
+          verticalDirection = 0;
+          // if already moving left, can't also move right, break out of function
+          if (horizontalDirection === -1) {
+            return;
+          }
         }
       }
     }
