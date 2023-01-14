@@ -48,13 +48,15 @@ function drawGame() {
   // clear screen to start with blank game
   clearScreen();
   //snake keyboard movements
-  if(!paused){
+  if (!paused) {
     moveSnake()
   }
-  //call the draw snake function
-  drawSnake();
+  //call eat function
+  eat();
   //call the draw treat function
   drawTreat();
+  //call the draw snake function
+  drawSnake();
   //how often screen gets updated
   setTimeout(drawGame, 1000 / fps);
 }
@@ -79,10 +81,33 @@ function drawSnake() {
 
 
 function drawTreat() {
-  ctx.fillStyle = 'gray'
+  ctx.fillStyle = 'purple'
   ctx.fillRect(treatX * gridPosition, treatY * gridPosition, gridSize, gridSize)
 }
 
+function moveTreatToRandomPosition() {
+  treatX = Math.round(Math.random() * gridPosition / 3.2);
+  treatY = Math.round(Math.random() * gridPosition / 3.2);
+}
+
+function eat() {
+  if (treatX === headX && treatY === headY) {
+    // increase length of snake body by 1
+    let newSection = [new SnakeSection(headX, headY)];
+    snakeBody.push(newSection);
+    moveTreatToRandomPosition();
+    for (let i = snakeBody.length - 1; i >= 0; i--) {
+      //grab current snake body 
+      let currentBody = snakeBody[i];
+      if (currentBody.x === treatX && currentBody.y === treatY) {
+        moveTreatToRandomPosition();
+        i = snakeBody.length - 1;
+      }
+    }
+  }
+  // if(treatX === )
+  // randomize by using math.random, round to nearest integer
+}
 
 // class history {
 //   constructor(x, y) {
@@ -109,17 +134,17 @@ function moveSnake() {
     //grab current snake body 
     let currentBody = snakeBody[i]
     //grab next snake body
-    let nextBody = snakeBody[i-1]
+    let nextBody = snakeBody[i - 1]
     //if no next body, current body moves to neck
-    if (!nextBody){
+    if (!nextBody) {
       //gridPisition / headx * heady
-      currentBody.x = headX 
+      currentBody.x = headX
       currentBody.y = headY
 
       // if nextbody move current body to the nextbody
-    } else{
+    } else {
       currentBody.x = nextBody.x
-      currentBody.y = nextBody.y 
+      currentBody.y = nextBody.y
     }
 
     // else move current body to next body
@@ -204,8 +229,8 @@ function keydown(x) {
         }
       }
     }
-  } 
-  if ((verticalDirection|| horizontalDirection) && paused){
+  }
+  if ((verticalDirection || horizontalDirection) && paused) {
     paused = false
   }
 }
