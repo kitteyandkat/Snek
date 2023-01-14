@@ -183,7 +183,7 @@ function gameOver() {
   if (horizontalDirection === 0 && verticalDirection === 0) {
     return false;
   }
-  if (headY <= 0 || headX <= 0 || headY >= 13 || headX >= 13){
+  if (headY <= 0 || headX <= 0 || headY >= 12 || headX >= 12){
     console.log('hit wall')
     endGame = true;
   // } else {
