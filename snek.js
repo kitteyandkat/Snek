@@ -58,6 +58,7 @@ function drawGame() {
   //call the draw snake function
   drawSnake();
   //how often screen gets updated
+  gameOver();
   setTimeout(drawGame, 1000 / fps);
 }
 function clearScreen() {
@@ -175,66 +176,96 @@ function moveSnake() {
   // }
 }
 
-// Game loop doesn't start until keydown
-
 let paused = true
+let endGame = false;
 
-//event listeners to set key binds to move snake
-document.body.addEventListener('keydown', keydown);
-function keydown(x) {
-  x.preventDefault();
-  if (x.keyCode === 38) {
-    console.log('up arrow')
-    // move the direction up on the y axis
-    verticalDirection = -1;
-    //limit to one direction at a time.
-    horizontalDirection = 0;
-    // if already moving down, can't also move up, break out of function
-    if (verticalDirection === 1) {
-      return
-    }
-  } else {
-    if (x.keyCode === 40) {
-      console.log('down arrow')
-      // move the direction down on the y axis
-      verticalDirection = +1;
-      //limit to one direction at a time.
-      horizontalDirection = 0;
-      // if already moving down, can't also move up, break out of function
-      if (verticalDirection === -1) {
-        return
+function gameOver() {
+  if (horizontalDirection === 0 && verticalDirection === 0) {
+    return false;
+  }
+  if (headY <= 0 || headX <= 0 || headY <= 13 || headX <= 13){
+    console.log('hit wall')
+    endGame = true;
+  // } else {
+  //   if (headX <= 0) {
+  //     console.log('hit wall')
+  //     endGame = true;
+  //   }
+    for (let i = snakeBody.length - 1; i >= 0; i--) {
+      //grab current snake body 
+      let currentBody = snakeBody[i];
+      if (currentBody.x === headX && currentBody.y === headY) {
+        endGame = true
       }
-    } else {
-      if (x.keyCode === 37) {
-        console.log('left arrow')
-        // move the direction left on the x axis
-        horizontalDirection = -1;
+
+      if (endGame) {
+      }
+        // console.log('You lost!')
+        paused = true
+      }
+      return endGame;
+  }
+}
+
+    // Game loop doesn't start until keydown
+
+
+    //event listeners to set key binds to move snake
+    document.body.addEventListener('keydown', keydown);
+    function keydown(x) {
+      x.preventDefault();
+      if (x.keyCode === 38) {
+        console.log('up arrow')
+        // move the direction up on the y axis
+        verticalDirection = -1;
         //limit to one direction at a time.
-        verticalDirection = 0;
-        // if already moving right, can't also move left, break out of function
-        if (horizontalDirection === 1) {
+        horizontalDirection = 0;
+        // if already moving down, can't also move up, break out of function
+        if (verticalDirection === 1) {
           return
         }
       } else {
-        if (x.keyCode === 39) {
-          console.log('right arrow')
-          // move the direction right on the x axis
-          horizontalDirection = 1;
+        if (x.keyCode === 40) {
+          console.log('down arrow')
+          // move the direction down on the y axis
+          verticalDirection = +1;
           //limit to one direction at a time.
-          verticalDirection = 0;
-          // if already moving left, can't also move right, break out of function
-          if (horizontalDirection === -1) {
-            return;
+          horizontalDirection = 0;
+          // if already moving down, can't also move up, break out of function
+          if (verticalDirection === -1) {
+            return
+          }
+        } else {
+          if (x.keyCode === 37) {
+            console.log('left arrow')
+            // move the direction left on the x axis
+            horizontalDirection = -1;
+            //limit to one direction at a time.
+            verticalDirection = 0;
+            // if already moving right, can't also move left, break out of function
+            if (horizontalDirection === 1) {
+              return
+            }
+          } else {
+            if (x.keyCode === 39) {
+              console.log('right arrow')
+              // move the direction right on the x axis
+              horizontalDirection = 1;
+              //limit to one direction at a time.
+              verticalDirection = 0;
+              // if already moving left, can't also move right, break out of function
+              if (horizontalDirection === -1) {
+                return;
+              }
+            }
           }
         }
       }
+      if ((verticalDirection || horizontalDirection) && paused) {
+        paused = false
+      }
     }
-  }
-  if ((verticalDirection || horizontalDirection) && paused) {
-    paused = false
-  }
-}
-drawGame();
+    drawGame();
 
 
 
