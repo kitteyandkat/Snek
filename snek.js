@@ -63,9 +63,16 @@ function drawGame() {
   drawTreat();
   //call the draw snake function
   drawSnake();
+  drawScoreboard();
   gameOver();
   //how often screen gets updated
   setTimeout(drawGame, 1000 / fps);
+}
+
+function drawScoreboard() {
+  ctx.fillStyle = "white";
+  ctx.font = "15px Caveat";
+  ctx.fillText("Score " + score, canvas.width - 60, 20);
 }
 
 function speed(){
@@ -125,7 +132,7 @@ function eat() {
     // increase length of snake body by 1
     let newSection = [new SnakeSection(headX, headY)];
     snakeBody.push(newSection);
-    score +1
+    score++
     moveTreatToRandomPosition();
     for (let i = snakeBody.length - 1; i >= 0; i--) {
       //grab current snake body 
@@ -250,7 +257,7 @@ function gameOver() {
       paused = true
       ctx.fillStyle = "white";
       ctx.font = "50px Caveat";
-      ctx.fillText("You Lose!", canvas.width/ 4 , canvas.height/ 2)
+      ctx.fillText("You Lose!", canvas.width/ 3.5 , canvas.height/ 2)
       setTimeout(resetBoard, 5000);
     }
     }
