@@ -1,9 +1,13 @@
 let canvas = document.querySelector(".game")
 let themeSong = document.getElementById("themeSong")
 
+function playSong(){
+  themeSong.play()
+  themeSong.volume = 0.1;
+}
+
 window.onload = function () {
-  themeSong.play();
-  themeSong.volume = 0.4;
+  setTimeout(playSong, 1000) 
   canvas.style.display = "none"
 }
 
@@ -42,9 +46,11 @@ let treatY = 2;
 
 let horizontalDirection = 0;
 let verticalDirection = 0;
+let score = 0
 
 //Set up game loop
 function drawGame() {
+  speed();
   // clear screen to start with blank game
   clearScreen();
   //snake keyboard movements
@@ -57,11 +63,32 @@ function drawGame() {
   drawTreat();
   //call the draw snake function
   drawSnake();
-  //how often screen gets updated
   gameOver();
+  //how often screen gets updated
   setTimeout(drawGame, 1000 / fps);
-
 }
+
+function speed(){
+  if (score > 5){
+    fps = 3
+  }
+  if (score > 10){
+    fps = 6
+  }
+  if (score > 20){
+    fps = 8
+  }
+  if (score > 30){
+    fps = 10
+  }
+  if (score > 40){
+    fps = 15
+  }
+  if (score > 50){
+    fps = 20
+  }
+}
+
 function clearScreen() {
   //use context to draw background to be cleared
   ctx.fillStyle = "#666666";
@@ -88,6 +115,7 @@ function drawTreat() {
 }
 
 function moveTreatToRandomPosition() {
+  // randomize by using math.random, round to nearest integer
   treatX = Math.round(Math.random() * gridPosition / 3.2);
   treatY = Math.round(Math.random() * gridPosition / 3.2);
 }
@@ -97,6 +125,7 @@ function eat() {
     // increase length of snake body by 1
     let newSection = [new SnakeSection(headX, headY)];
     snakeBody.push(newSection);
+    score +1
     moveTreatToRandomPosition();
     for (let i = snakeBody.length - 1; i >= 0; i--) {
       //grab current snake body 
@@ -108,7 +137,6 @@ function eat() {
     }
   }
   // if(treatX === )
-  // randomize by using math.random, round to nearest integer
 }
 
 // class history {
@@ -192,6 +220,8 @@ function resetBoard() {
   snakeBody[1].y = headY -.8
 }
 
+let gameOverScreen = document.querySelector('.game')
+
 function gameOver() {
   if (paused) {
     return;
@@ -218,7 +248,10 @@ function gameOver() {
     if (endGame) {
       console.log('You lost!')
       paused = true
-      setTimeout(resetBoard, 5000);
+      ctx.fillStyle = "black";
+      ctx.font = "50px Caveat";
+      ctx.fillText("You Lose!", canvas.width/ 4 , canvas.height/ 2)
+      setTimeout(resetBoard, 10000);
     }
     }
   }

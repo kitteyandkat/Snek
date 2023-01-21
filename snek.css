@@ -129,3 +129,12 @@ canvas.hidden{
     background-color: #666666;
     box-shadow: #acae2295 10px 5px 20px;
   }
+  
+  .game{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+  .game.fade{
+    opacity: 0;
+  }
