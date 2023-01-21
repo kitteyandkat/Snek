@@ -248,10 +248,10 @@ function gameOver() {
     if (endGame) {
       console.log('You lost!')
       paused = true
-      ctx.fillStyle = "black";
+      ctx.fillStyle = "white";
       ctx.font = "50px Caveat";
       ctx.fillText("You Lose!", canvas.width/ 4 , canvas.height/ 2)
-      setTimeout(resetBoard, 10000);
+      setTimeout(resetBoard, 5000);
     }
     }
   }
