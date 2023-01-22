@@ -216,6 +216,8 @@ function moveSnake() {
 let paused = true
 
 function resetBoard() {
+  score = 0;
+  fps = 2;
   treatX = 1;
   treatY = 2;
   headX = 3;
@@ -227,7 +229,7 @@ function resetBoard() {
   snakeBody[1].y = headY -.8
 }
 
-let gameOverScreen = document.querySelector('.game')
+
 
 function gameOver() {
   if (paused) {
@@ -255,11 +257,13 @@ function gameOver() {
     if (endGame) {
       console.log('You lost!')
       paused = true
+      setTimeout(resetBoard, 5000);
+    }
+    if (endGame && paused){
       ctx.fillStyle = "white";
       ctx.font = "50px Caveat";
       ctx.fillText("You Lose!", canvas.width/ 3.5 , canvas.height/ 2)
-      setTimeout(resetBoard, 5000);
-    }
+      }
     }
   }
 
