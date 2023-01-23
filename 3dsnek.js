@@ -12,6 +12,8 @@ window.paused = paused;
 let score = 0;
 let speed = 1;
 let endGame = false;
+let scoreElement = document.querySelector('.score')
+let highScoreElement = document.querySelector('.highscore')
 let gameOverScreen = document.querySelector(".game-over-container")
 
 
@@ -618,6 +620,8 @@ class FirstPersonSnek {
             //     treat.position.set(randomPosition, 2, 0)
             // }
             score++
+            scoreElement.innerText = ` Score: ${score}`
+            highScoreElement.innerText = ` Your Score Was ${score}`
             speed += .1;
             console.log(score)
         }

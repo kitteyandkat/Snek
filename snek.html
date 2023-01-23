@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <audio id="themeSong" src="HeatleyBros - HeatleyBros II - 06 8 Bit Adventure.mp3" loop="loop"></audio>
+<audio id="themeSong" src="HeatleyBros - HeatleyBros II - 06 8 Bit Adventure.mp3" loop="loop"></audio>
 
 <head>
     <link rel="stylesheet" href="./snek.css">
@@ -8,23 +8,32 @@
 
 <body>
     <div class="mainContainer">
-       <div class="startScreen"> 
-        <div class="loader"></div>
-        <div class="start">
-            <div class="center">
-                <button class="btn" onclick="enterGame()">
-                    <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
-                        <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
-                        <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
-                    </svg>
-                    <span>START</span>
-                </button>
+        <div class="startScreen">
+            <div class="loader"></div>
+            <div class="start">
+                <div class="center">
+                    <button class="btn" onclick="enterGame()">
+                        <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                            <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                            <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                        </svg>
+                        <span>START</span>
+                    </button>
+                    <div class="instructionsContainer">
+                        <p1 class="instructionsTitle">Instructions:</p1>
+                        <p2 class="instructions">You are a very hungry Snake! In order to play, use the arrow keys to
+                            guide yourself to some yummy treats! As the you eat the treats, you gain energy which causes
+                            you to grow larger and slither faster! While the treats are delicious your tail is not! Try
+                            to eat as many treats as you can, all while avoiding the walls, and eating your own tail!
+                        </p2>
+                        <button class="3dSnekButton btn" onclick="location.href='3dsnek.html'">Play in 3D!</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class = "gameScreen">
-    <canvas width="500" height="500" class="game"> </canvas>
-    <!-- <div class="gameOver" style="display:none"> 
+        <div class="gameScreen">
+            <canvas width="500" height="500" class="game"> </canvas>
+            <!-- <div class="gameOver" style="display:none"> 
         <h1>Game Over </h1>
         <button class="btn" onclick="resetBoard()">
             <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
@@ -34,7 +43,7 @@
             <span>RESTART</span>
         </button>
     </div> -->
-    </div>
+        </div>
 </body>
 
 <script src="./snek.js"></script>
