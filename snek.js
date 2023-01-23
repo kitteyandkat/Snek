@@ -35,7 +35,7 @@ class SnakeSection {
   }
 }
 const snakeBody = [new SnakeSection(headX, headY - .4), new SnakeSection(headX, headY - .8)]
-
+window.snakeBody = snakeBody;
 let fps = 2;
 let gridPosition = 40
 let gridSize = canvas.width / gridPosition - 2;
@@ -140,6 +140,7 @@ function eat() {
       if (currentBody.x === treatX && currentBody.y === treatY) {
         moveTreatToRandomPosition();
         i = snakeBody.length - 1;
+        i = 0
       }
     }
   }
@@ -183,8 +184,6 @@ function moveSnake() {
       currentBody.x = nextBody.x
       currentBody.y = nextBody.y
     }
-
-    // else move current body to next body
   }
   headX = headX + horizontalDirection;
   headY = headY + verticalDirection;
