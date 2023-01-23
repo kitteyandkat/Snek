@@ -1,0 +1,11 @@
+Model Information:
+* title:	Apple
+* source:	https://sketchfab.com/3d-models/apple-588278115f92444fab01aa121da0b244
+* author:	Mateus Schwaab (https://sketchfab.com/Mehrus)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Apple" (https://sketchfab.com/3d-models/apple-588278115f92444fab01aa121da0b244) by Mateus Schwaab (https://sketchfab.com/Mehrus) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

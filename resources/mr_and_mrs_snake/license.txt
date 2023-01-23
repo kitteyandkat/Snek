@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mr And Mrs Snake
+* source:	https://sketchfab.com/3d-models/mr-and-mrs-snake-6902c9d8032a40f3933cb50698c7cccd
+* author:	Rauschkugel (https://sketchfab.com/rauschkugel)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mr And Mrs Snake" (https://sketchfab.com/3d-models/mr-and-mrs-snake-6902c9d8032a40f3933cb50698c7cccd) by Rauschkugel (https://sketchfab.com/rauschkugel) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
